@@ -1,0 +1,44 @@
+spring:
+  datasource:
+    dynamic:
+      primary: item #设置默认的数据源或者数据源组,默认值即为master
+      strict: false  #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候会抛出异常,不启动则使用默认数据源.
+      datasource:
+        item:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://192.168.11.136:3306/seata_item?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: 123456
+        order:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://192.168.11.136:3306/seata_order?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: 123456
+
+logging:
+  level:
+    com.xkcoding: debug
+    com.xkcoding.orm.mybatis.plus.mapper: trace
+mybatis-plus:
+  mapper-locations: classpath:mappers/*/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.example.**.domain
+  global-config:
+    # 数据库相关配置
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: auto
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      field-strategy: not_empty
+      #驼峰下划线转换
+      table-underline: true
+    #刷新mapper 调试神器
+    refresh: true
+  # 原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    # 打印sql
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
