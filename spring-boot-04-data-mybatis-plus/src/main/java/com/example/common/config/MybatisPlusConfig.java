@@ -1,6 +1,6 @@
 package com.example.common.config;
 
-import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,9 @@ public class MybatisPlusConfig {
      * @return: MybatisPlusInterceptor
      */
     @Bean
-    public MybatisPlusInterceptor paginationInterceptor() {
-        return new MybatisPlusInterceptor();
+    public PaginationInterceptor paginationInterceptor() {
+        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+        paginationInterceptor.setDialectType("mysql");
+        return paginationInterceptor;
     }
 }
