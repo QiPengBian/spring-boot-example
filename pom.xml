@@ -22,9 +22,10 @@
         <module>spring-boot-03-exception</module>
         <module>spring-boot-04-data-dynamic</module>
         <module>spring-boot-04-data-mybatis-plus</module>
+        <module>spring-boot-04-data-tk-mybatis</module>
 <!--        <module>spring-boot-05-cache-redis</module>-->
 <!--        <module>spring-boot-06-oauth2-security</module>-->
-<!--        <module>spring-boot-06-oauth2-security-jwt</module>-->
+        <module>spring-boot-06-oauth2-security-jwt</module>
 <!--        <module>spring-boot-07-seata</module>-->
 <!--        <module>spring-boot-08-redis</module>-->
     </modules>
@@ -43,6 +44,8 @@
         <guava.version>29.0-jre</guava.version>
         <user.agent.version>1.20</user.agent.version>
         <mybatis-plus.version>3.4.1</mybatis-plus.version>
+        <tk.mybatis.version>2.1.5</tk.mybatis.version>
+        <pagehelper.version>5.1.11</pagehelper.version>
         <jjwt.version>0.9.0</jjwt.version>
         <dubbo.version>2.7.4.1</dubbo.version>
         <alibaba-seata.version>1.0.0</alibaba-seata.version>
@@ -96,6 +99,16 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${tk.mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
             </dependency>
             <!--JTW-->
             <dependency>
