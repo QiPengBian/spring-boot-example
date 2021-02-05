@@ -9,49 +9,36 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
- * 用户信息表
+ * 角色信息表
  *
  * @author QiPeng
  * @email 276109002@qq.com
- * @date 2021-01-05 15:16:56
+ * @date 2021-02-05 13:42:38
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-@TableName("sys_user")
-public class UserEntity implements Serializable {
+@TableName("sys_role")
+public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID
+     * 角色ID
      */
-    @TableId(value = "id")
+    @TableId
     private Long id;
     /**
-     * 用户名
+     * 角色名称
      */
-    @TableField(value = "username")
-    private String username;
-    /**
-     * 密码
-     */
-    @TableField(value = "password")
-    private String password;
-    /**
-     * 角色列表
-     */
-    @TableField(exist = false)
-    private List<RoleEntity> roleList;
+    @TableField(value = "role_name")
+    private String roleName;
 
     public static final String ID = "id";
 
-    public static final String USERNAME = "username";
-
-    public static final String PASSWORD = "password";
+    public static final String ROLE_NAME = "role_name";
 
 }

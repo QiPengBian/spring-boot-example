@@ -1,7 +1,7 @@
 package com.example.sys.controller;
 
 import com.example.common.domain.Resp;
-import com.example.sys.domain.UserEntity;
+import com.example.sys.domain.User;
 import com.example.sys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +31,8 @@ public class UserController {
      * @return: Resp
      */
     @PostMapping("/addUser")
-    public Resp addUser(UserEntity userEntity) {
-        userService.saveUser(userEntity);
+    public Resp addUser(User user) {
+        userService.saveUser(user);
         return Resp.ok();
     }
 
@@ -44,8 +44,8 @@ public class UserController {
      * @return: Resp
      */
     @PostMapping("/updateUser")
-    public Resp updateUser(UserEntity userEntity) {
-        userService.updateUser(userEntity);
+    public Resp updateUser(User user) {
+        userService.updateUser(user);
         return Resp.ok();
     }
 
@@ -70,8 +70,8 @@ public class UserController {
      * @return: Resp<UserEntity>
      */
     @GetMapping("/queryUserByUsername")
-    public Resp<UserEntity> queryUserByUsename(String username) {
-        UserEntity userEntity = userService.queryUserByUsename(username);
-        return Resp.ok(userEntity);
+    public Resp<User> queryUserByUsename(String username) {
+        User user = userService.queryUserByUsename(username);
+        return Resp.ok(user);
     }
 }

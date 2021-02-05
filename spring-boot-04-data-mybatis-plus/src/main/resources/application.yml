@@ -13,7 +13,7 @@ logging:
     com.xkcoding: debug
     com.xkcoding.orm.mybatis.plus.mapper: trace
 mybatis-plus:
-  mapper-locations: classpath:mappers/sys/*.xml
+  mapper-locations: classpath:mappers/*/*.xml
   #实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: com.example.**.domain
   global-config:

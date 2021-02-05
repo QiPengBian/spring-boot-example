@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.sys.domain.RoleEntity;
+import com.example.sys.domain.Role;
 import com.example.sys.mapper.RoleMapper;
 import com.example.sys.service.RoleService;
 import org.springframework.stereotype.Service;
@@ -22,23 +22,23 @@ import java.util.List;
  * @date 2021-01-12 13:24:51
  */
 @Service("roleService")
-public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> implements RoleService {
+public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
 
     /**
      * @description: 分页查询
      * @author: bianqipeng
      * @date: 2021-02-03 09:54:41
      * @param: page
-     * @param: roleEntity
-     * @return: IPage<RoleEntity>
+     * @param: role
+     * @return: IPage<role>
      */
     @Override
-    public IPage<RoleEntity> queryPageByModel(Page page, RoleEntity roleEntity) {
-        IPage<RoleEntity> iPage = null;
+    public IPage<Role> queryPageByModel(Page page, Role role) {
+        IPage<Role> iPage = null;
         if (ObjectUtil.isNull(page)) {
             return iPage;
         }
-        QueryWrapper<RoleEntity> queryWrapper = packageWrapper(roleEntity);
+        QueryWrapper<Role> queryWrapper = packageWrapper(role);
         iPage = baseMapper.selectPage(page, queryWrapper);
         return iPage;
     }
@@ -47,45 +47,45 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> impleme
      * @description: 新增数据
      * @author: bianqipeng
      * @date: 2021-02-03 09:20:20
-     * @param: roleEntity
+     * @param: role
      */
     @Override
-    public void saveModel(RoleEntity roleEntity) {
-        if (ObjectUtil.isNull(roleEntity) || ObjectUtil.isNull(roleEntity.getId())) {
+    public void saveModel(Role role) {
+        if (ObjectUtil.isNull(role) || ObjectUtil.isNull(role.getId())) {
             return;
         }
-        baseMapper.insert(roleEntity);
+        baseMapper.insert(role);
     }
 
     /**
      * @description: 通过主键更新数据
      * @author: bianqipeng
      * @date: 2021-02-03 09:20:23
-     * @param: roleEntity
-     * @return: RoleEntity
+     * @param: role
+     * @return: role
      */
     @Override
-    public void updateModelByPrimaryKey(RoleEntity roleEntity) {
-        if (ObjectUtil.isNull(roleEntity) || ObjectUtil.isNull(roleEntity.getId())) {
+    public void updateModelByPrimaryKey(Role role) {
+        if (ObjectUtil.isNull(role) || ObjectUtil.isNull(role.getId())) {
             return;
         }
-        baseMapper.updateById(roleEntity);
+        baseMapper.updateById(role);
     }
 
     /**
      * @description: 通过QueryWrapper更新数据
      * @author: bianqipeng
      * @date: 2021-02-03 09:20:26
-     * @param: roleEntity
+     * @param: role
      * @param: queryWrapper
-     * @return: RoleEntity
+     * @return: role
      */
     @Override
-    public void updateModelByWrapper(RoleEntity roleEntity, QueryWrapper<RoleEntity> queryWrapper) {
-        if (ObjectUtil.isNull(roleEntity) || ObjectUtil.isNull(queryWrapper)) {
+    public void updateModelByWrapper(Role role, QueryWrapper<Role> queryWrapper) {
+        if (ObjectUtil.isNull(role) || ObjectUtil.isNull(queryWrapper)) {
             return;
         }
-        baseMapper.update(roleEntity, queryWrapper);
+        baseMapper.update(role, queryWrapper);
     }
 
     /**
@@ -93,15 +93,15 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> impleme
      * @author: bianqipeng
      * @date: 2021-02-03 09:20:30
      * @param: id
-     * @return: RoleEntity
+     * @return: role
      */
     @Override
-    public RoleEntity queryModelByPrimaryKey(Integer id) {
-        RoleEntity roleEntity = null;
+    public Role queryModelByPrimaryKey(Integer id) {
+        Role role = null;
         if (ObjectUtil.isNotNull(id)) {
-            roleEntity = baseMapper.selectById(id);
+            role = baseMapper.selectById(id);
         }
-        return roleEntity;
+        return role;
     }
 
     /**
@@ -109,30 +109,30 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleEntity> impleme
      * @author: bianqipeng
      * @date: 2021-02-03 09:20:33
      * @param: queryQueryWrapper
-     * @return: List<RoleEntity>
+     * @return: List<role>
      */
     @Override
-    public List<RoleEntity> queryModelByWrapper(QueryWrapper<RoleEntity> queryQueryWrapper) {
-        List<RoleEntity> roleEntityList = new ArrayList<>(16);
+    public List<Role> queryModelByWrapper(QueryWrapper<Role> queryQueryWrapper) {
+        List<Role> roleList = new ArrayList<>(16);
         if (ObjectUtil.isNotNull(queryQueryWrapper)) {
-            roleEntityList = baseMapper.selectList(queryQueryWrapper);
+            roleList = baseMapper.selectList(queryQueryWrapper);
         }
-        return roleEntityList;
+        return roleList;
     }
 
     /**
      * @description: QueryWrapper包装
      * @author: bianqipeng
      * @date: 2021-02-03 09:58:43
-     * @param: roleEntity
-     * @return: QueryWrapper<RoleEntity>
+     * @param: role
+     * @return: QueryWrapper<role>
      */
-    private QueryWrapper<RoleEntity> packageWrapper(RoleEntity roleEntity) {
-        QueryWrapper<RoleEntity> queryWrapper = new QueryWrapper<>();
-        if (ObjectUtil.isNotNull(roleEntity)) {
+    private QueryWrapper<Role> packageWrapper(Role role) {
+        QueryWrapper<Role> queryWrapper = new QueryWrapper<>();
+        if (ObjectUtil.isNotNull(role)) {
             queryWrapper
-                    .eq(ObjectUtil.isNotEmpty(roleEntity.getId()), RoleEntity.ID, roleEntity.getId())
-                    .eq(StrUtil.isNotEmpty(roleEntity.getRoleName()), RoleEntity.ROLE_NAME, roleEntity.getRoleName());
+                    .eq(ObjectUtil.isNotEmpty(role.getId()), Role.ID, role.getId())
+                    .eq(StrUtil.isNotEmpty(role.getRoleName()), Role.ROLE_NAME, role.getRoleName());
         }
         return queryWrapper;
     }

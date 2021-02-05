@@ -5,7 +5,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.sys.domain.UserEntity;
+import com.example.sys.domain.User;
 import com.example.sys.mapper.UserMapper;
 import com.example.sys.service.UserService;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ import java.util.List;
  * @date 2021-01-05 15:16:56
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     /**
      * @description: 新增用户
@@ -29,11 +29,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
      * @param: userEntity
      */
     @Override
-    public UserEntity saveUser(UserEntity userEntity) {
-        if (ObjectUtil.isNotNull(userEntity)) {
-            this.save(userEntity);
+    public User saveUser(User user) {
+        if (ObjectUtil.isNotNull(user)) {
+            baseMapper.insert(user);
         }
-        return userEntity;
+        return user;
     }
 
     /**
@@ -44,13 +44,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
      * @return: UserEntity
      */
     @Override
-    public UserEntity updateUser(UserEntity userEntity) {
-        if (ObjectUtil.isNotNull(userEntity)) {
-            QueryWrapper<UserEntity> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq(UserEntity.USERNAME, userEntity.getUsername());
-            this.update(userEntity, queryWrapper);
+    public User updateUser(User user) {
+        if (ObjectUtil.isNotNull(user)) {
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq(User.USERNAME, user.getUsername());
+            baseMapper.update(user, queryWrapper);
         }
-        return userEntity;
+        return user;
     }
 
     /**
@@ -62,9 +62,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     @Override
     public void deleteUserByUsername(String username) {
         if (StrUtil.isNotBlank(username)) {
-            QueryWrapper<UserEntity> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq(UserEntity.USERNAME, username);
-            this.remove(queryWrapper);
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq(User.USERNAME, username);
+            baseMapper.delete(queryWrapper);
         }
     }
 
@@ -76,23 +76,30 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
      * @return: UserEntity
      */
     @Override
-    public UserEntity queryUserByUsename(String username) {
-        UserEntity userEntity = null;
+    public User queryUserByUsename(String username) {
+        User user = null;
         if (StrUtil.isNotBlank(username)) {
-            List<UserEntity> userEntityList = this.baseMapper.queryUserByUsername(username);
-            if (CollectionUtil.isNotEmpty(userEntityList)) {
-                userEntity = userEntityList.get(0);
+            List<User> userList = baseMapper.queryUserByUsername(username);
+            if (CollectionUtil.isNotEmpty(userList)) {
+                user = userList.get(0);
             }
         }
-        return userEntity;
+        return user;
     }
 
+    /**
+     * @description: 通过角色名称查询用户
+     * @author: bianqipeng
+     * @date: 2021-01-12 15:36:54
+     * @param: roleName
+     * @return: List<UserEntity>
+     */
     @Override
-    public List<UserEntity> queryUserByRoleName(String roleName) {
-        List<UserEntity> userEntityList = null;
+    public List<User> queryUserByRoleName(String roleName) {
+        List<User> userList = null;
         if (StrUtil.isNotBlank(roleName)) {
-            userEntityList = this.baseMapper.queryUserByRoleName(roleName);
+            userList = baseMapper.queryUserByRoleName(roleName);
         }
-        return userEntityList;
+        return userList;
     }
 }

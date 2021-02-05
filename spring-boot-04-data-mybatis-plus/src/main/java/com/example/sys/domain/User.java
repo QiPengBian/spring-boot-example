@@ -12,34 +12,46 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 角色信息表
+ * 用户信息表
  *
  * @author QiPeng
  * @email 276109002@qq.com
- * @date 2021-01-12 13:24:51
+ * @date 2021-01-05 15:16:56
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-@TableName("sys_role")
-public class RoleEntity implements Serializable {
+@TableName("sys_user")
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 角色ID
+     * 用户ID
      */
-    @TableId
+    @TableId(value = "id")
     private Long id;
     /**
-     * 角色名称
+     * 用户名
      */
-    @TableField(value = "role_name")
-    private String roleName;
+    @TableField(value = "username")
+    private String username;
+    /**
+     * 密码
+     */
+    @TableField(value = "password")
+    private String password;
+    /**
+     * 角色列表
+     */
+    @TableField(exist = false)
+    private List<Role> roleList;
 
     public static final String ID = "id";
 
-    public static final String ROLE_NAME = "role_name";
+    public static final String USERNAME = "username";
+
+    public static final String PASSWORD = "password";
 
 }

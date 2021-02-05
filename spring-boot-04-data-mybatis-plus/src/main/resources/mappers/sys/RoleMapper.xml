@@ -4,7 +4,7 @@
 <mapper namespace="com.example.sys.mapper.RoleMapper">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.example.sys.domain.RoleEntity" id="roleMap">
+    <resultMap type="com.example.sys.domain.Role" id="roleMap">
         <result property="id" column="id"/>
         <result property="roleName" column="role_name"/>
     </resultMap>

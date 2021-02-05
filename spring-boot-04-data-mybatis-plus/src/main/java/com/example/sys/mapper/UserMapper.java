@@ -1,7 +1,7 @@
 package com.example.sys.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.sys.domain.UserEntity;
+import com.example.sys.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * @date 2021-01-05 15:16:56
  */
 @Mapper
-public interface UserMapper extends BaseMapper<UserEntity> {
+public interface UserMapper extends BaseMapper<User> {
 
     /**
      * @description: 用户：角色=1：n
@@ -24,7 +24,14 @@ public interface UserMapper extends BaseMapper<UserEntity> {
      * @param: username
      * @return: UserEntity
      */
-    List<UserEntity> queryUserByUsername(@Param("username") String username);
+    List<User> queryUserByUsername(@Param("username") String username);
 
-    List<UserEntity> queryUserByRoleName(String roleName);
+    /**
+     * @description: TODO
+     * @author: bianqipeng
+     * @date: 2021-02-04 16:25:47
+     * @param: roleName
+     * @return: List<User>
+     */
+    List<User> queryUserByRoleName(@Param("roleName") String roleName);
 }

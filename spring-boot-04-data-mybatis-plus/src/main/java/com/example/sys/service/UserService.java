@@ -1,7 +1,7 @@
 package com.example.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.sys.domain.UserEntity;
+import com.example.sys.domain.User;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * @email 276109002@qq.com
  * @date 2021-01-05 15:16:56
  */
-public interface UserService extends IService<UserEntity> {
+public interface UserService extends IService<User> {
 
     /**
      * @description: 新增用户
@@ -20,7 +20,7 @@ public interface UserService extends IService<UserEntity> {
      * @date: 2021-01-05 16:21:07
      * @param: userEntity
      */
-    UserEntity saveUser(UserEntity userEntity);
+    User saveUser(User user);
 
     /**
      * @description: 修改用户
@@ -29,7 +29,7 @@ public interface UserService extends IService<UserEntity> {
      * @param: userEntity
      * @return: UserEntity
      */
-    UserEntity updateUser(UserEntity userEntity);
+    User updateUser(User user);
 
     /**
      * @description: 删除用户
@@ -46,7 +46,7 @@ public interface UserService extends IService<UserEntity> {
      * @param: username
      * @return: UserEntity
      */
-    UserEntity queryUserByUsename(String username);
+    User queryUserByUsename(String username);
 
     /**
      * @description: 通过角色名称查询用户
@@ -55,6 +55,6 @@ public interface UserService extends IService<UserEntity> {
      * @param: roleName
      * @return: List<UserEntity>
      */
-    List<UserEntity> queryUserByRoleName(String roleName);
+    List<User> queryUserByRoleName(String roleName);
 }
 

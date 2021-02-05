@@ -1,7 +1,7 @@
 package com.example.sys.mapper;
 
-import com.example.sys.domain.RoleEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.sys.domain.Role;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -12,6 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2021-01-12 13:24:51
  */
 @Mapper
-public interface RoleMapper extends BaseMapper<RoleEntity> {
+public interface RoleMapper extends BaseMapper<Role> {
 	
 }
