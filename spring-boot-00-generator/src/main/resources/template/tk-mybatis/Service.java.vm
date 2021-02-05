@@ -1,0 +1,87 @@
+package ${package}.${moduleName}.service;
+
+import ${package}.${moduleName}.domain.${className};
+import com.github.pagehelper.PageInfo;
+import tk.mybatis.mapper.domain.Example;
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.List;
+
+/**
+ * @description: ${comments}
+ * @author: ${author}
+ * @date: ${datetime}
+ */
+public interface ${className}Service {
+
+    /**
+     * @description: 新增数据
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: ${classname}
+     */
+    void saveSelective(${className} ${classname});
+
+    /**
+     * @description: 通过主键修改数据
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: ${classname}
+     */
+    void updateByPrimaryKeySelective(${className} ${classname});
+
+    /**
+     * @description: 通过example修改数据
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: ${classname}
+     * @param: example
+     */
+    void updateByExampleSelective(${className} ${classname}, Example example);
+
+    /**
+     * @description: 通过主键修改数据(可以将指定字段修改成null)
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: ${classname}
+     * @param: fieldList
+     */
+    void updateByPrimaryKeySelectiveForce(${className} ${classname}, List<String> fieldList);
+
+    /**
+     * @description: 分页查询
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: page
+     * @param: example
+     * @return: PageInfo<${className}>
+     */
+    PageInfo<${className}> queryPage(PageInfo page, Example example);
+
+    /**
+     * @description: example查询
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: example
+     * @return: List<${className}>
+     */
+    List<${className}> queryListByExample(Example example);
+
+    /**
+     * @description: 主键查询
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: id
+     * @return: ${className}
+     */
+    ${className} queryByPrimaryKey(Long id);
+
+    /**
+     * @description: 主键删除
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: id
+     */
+    void deleteByPrimaryKey(Long id);
+}
+

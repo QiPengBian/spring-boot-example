@@ -1,7 +1,7 @@
 package ${package}.${moduleName}.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import ${package}.${moduleName}.domain.${className}Entity;
+import ${package}.${moduleName}.domain.${className};
 
 /**
  * ${comments}
@@ -10,7 +10,7 @@ import ${package}.${moduleName}.domain.${className}Entity;
  * @email ${email}
  * @date ${datetime}
  */
-public interface ${className}Service extends IService<${className}Entity> {
+public interface ${className}Service extends IService<${className}> {
 
 }
 

@@ -1,4 +1,4 @@
-package ${package}.${moduleName}.entity;
+package ${package}.${moduleName}.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @TableName("${tableName}")
-public class ${className}Entity implements Serializable {
+public class ${className} implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

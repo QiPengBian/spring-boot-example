@@ -1,0 +1,150 @@
+package ${package}.${moduleName}.service.impl;
+
+import cn.hutool.core.util.ObjectUtil;
+import ${package}.${moduleName}.domain.${className};
+import ${package}.${moduleName}.mapper.${className}Mapper;
+import ${package}.${moduleName}.service.${className}Service;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @description: ${comments}
+ * @author: ${author}
+ * @date: ${datetime}
+ */
+@Service
+public class ${className}ServiceImpl implements ${className}Service {
+
+    @Autowired
+    private ${className}Mapper ${classname}Mapper;
+
+    /**
+     * @description: 新增数据
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: ${classname}
+     */
+    @Override
+    public void saveSelective(${className} ${classname}) {
+        if (ObjectUtil.isNotNull(${classname})) {
+                ${classname}Mapper.insertSelective(${classname});
+        }
+    }
+
+    /**
+     * @description: 通过主键修改数据
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: ${classname}
+     */
+    @Override
+    public void updateByPrimaryKeySelective(${className} ${classname}) {
+        if (ObjectUtil.isNull(${classname}) || ObjectUtil.isNull(${classname}.getId())){
+            return;
+        }
+        ${classname}Mapper.updateByPrimaryKeySelective(${classname});
+    }
+
+    /**
+     * @description: 通过example修改数据
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: ${classname}
+     * @param: example
+     */
+    @Override
+    public void updateByExampleSelective(${className} ${classname}, Example example) {
+        if (ObjectUtil.isNull(${classname}) || ObjectUtil.isNull(example)) {
+            return;
+        }
+        ${classname}Mapper.updateByExampleSelective(${classname}, ${classname}Mapper);
+    }
+
+    /**
+     * @description: 通过主键修改数据（可以将指定字段更新为null）
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: ${classname}
+     * @param: fieldList
+     */
+    @Override
+    public void updateByPrimaryKeySelectiveForce(${className} ${classname}, List<String> fieldList) {
+        if (ObjectUtil.isNull(${classname}) || ObjectUtil.isNull(${classname}.getId())){
+            return;
+        }
+        if (ObjectUtil.isNull(fieldList)) {
+            fieldList = new ArrayList<>();
+        }
+        ${classname}Mapper.updateByPrimaryKeySelectiveForce(${classname}, fieldList);
+    }
+
+    /**
+     * @description: 分页查询
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: page
+     * @param: example
+     * @return: PageInfo<${className}>
+     */
+    @Override
+    public PageInfo<${className}> queryPage(PageInfo page, Example example) {
+        if (ObjectUtil.isNull(page) || ObjectUtil.isNull(example)) {
+            return page;
+        }
+        //分页查询
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        page = new PageInfo<${className}>(${classname}Mapper.selectByExample(example));
+        return page;
+    }
+
+    /**
+     * @description: example查询
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: example
+     * @return: List<${className}>
+     */
+    @Override
+    public List<${className}> queryListByExample(Example example) {
+        List<${className}> ${classname}List = new ArrayList<>();
+        if (ObjectUtil.isNotNull(example)) {
+            ${classname}List = ${classname}Mapper.selectByExample(example);
+        }
+        return ${classname}List;
+    }
+
+    /**
+     * @description: 主键查询
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: id
+     * @return: ${className}
+     */
+    @Override
+    public ${className} queryByPrimaryKey(Long id) {
+        ${className} ${classname} = null;
+        if (ObjectUtil.isNotNull(id)) {
+            ${classname} =${classname}Mapper.selectByPrimaryKey(id);
+        }
+        return ${classname};
+    }
+
+    /**
+     * @description: 主键删除
+     * @author: ${author}
+     * @date: ${datetime}
+     * @param: id
+     */
+    @Override
+    public void deleteByPrimaryKey(Long id) {
+        if (ObjectUtil.isNotNull(id)) {
+            ${classname}Mapper.deleteByPrimaryKey(id);
+        }
+    }
+}

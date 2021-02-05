@@ -1,4 +1,4 @@
-package com.example.common.config;
+package com.example.sys.config;
 
 import com.example.common.utils.RRException;
 import com.example.mapper.GeneratorDao;
@@ -7,7 +7,6 @@ import com.example.mapper.OracleGeneratorDao;
 import com.example.mapper.PostgreSQLGeneratorDao;
 import com.example.mapper.SQLServerGeneratorDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -19,30 +18,36 @@ import org.springframework.context.annotation.Primary;
  */
 @Configuration
 public class DbConfig {
-    @Value("${guli.database: mysql}")
-    private String database;
+
+    @Autowired
+    private DbProperties dbProperties;
+
     @Autowired
     private MySQLGeneratorDao mySQLGeneratorDao;
+
     @Autowired
     private OracleGeneratorDao oracleGeneratorDao;
+
     @Autowired
     private SQLServerGeneratorDao sqlServerGeneratorDao;
+
     @Autowired
     private PostgreSQLGeneratorDao postgreSQLGeneratorDao;
 
     @Bean
     @Primary
     public GeneratorDao getGeneratorDao(){
-        if("mysql".equalsIgnoreCase(database)){
+        String databaseType = dbProperties.getDatabaseType();
+        if("mysql".equalsIgnoreCase(databaseType)){
             return mySQLGeneratorDao;
-        }else if("oracle".equalsIgnoreCase(database)){
+        }else if("oracle".equalsIgnoreCase(databaseType)){
             return oracleGeneratorDao;
-        }else if("sqlserver".equalsIgnoreCase(database)){
+        }else if("sqlserver".equalsIgnoreCase(databaseType)){
             return sqlServerGeneratorDao;
-        }else if("postgresql".equalsIgnoreCase(database)){
+        }else if("postgresql".equalsIgnoreCase(databaseType)){
             return postgreSQLGeneratorDao;
         }else {
-            throw new RRException("不支持当前数据库：" + database);
+            throw new RRException("不支持当前数据库：" + databaseType);
         }
     }
 }

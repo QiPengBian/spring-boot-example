@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.sys.config.DbProperties;
 import com.example.common.utils.GenUtils;
 import com.example.common.utils.PageUtils;
 import com.example.common.utils.Query;
@@ -17,42 +18,46 @@ import java.util.zip.ZipOutputStream;
 
 /**
  * 代码生成器
- * 
+ *
  * @author Mark sunlightcs@gmail.com
  */
 @Service
 public class SysGeneratorService {
-	@Autowired
-	private GeneratorDao generatorDao;
 
-	public PageUtils queryList(Query query) {
-		Page<?> page = PageHelper.startPage(query.getPage(), query.getLimit());
-		List<Map<String, Object>> list = generatorDao.queryList(query);
+    @Autowired
+    private DbProperties dbProperties;
 
-		return new PageUtils(list, (int)page.getTotal(), query.getLimit(), query.getPage());
-	}
+    @Autowired
+    private GeneratorDao generatorDao;
 
-	public Map<String, String> queryTable(String tableName) {
-		return generatorDao.queryTable(tableName);
-	}
+    public PageUtils queryList(Query query) {
+        Page<?> page = PageHelper.startPage(query.getPage(), query.getLimit());
+        List<Map<String, Object>> list = generatorDao.queryList(query);
 
-	public List<Map<String, String>> queryColumns(String tableName) {
-		return generatorDao.queryColumns(tableName);
-	}
+        return new PageUtils(list, (int) page.getTotal(), query.getLimit(), query.getPage());
+    }
 
-	public byte[] generatorCode(String[] tableNames) {
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		ZipOutputStream zip = new ZipOutputStream(outputStream);
+    public Map<String, String> queryTable(String tableName) {
+        return generatorDao.queryTable(tableName);
+    }
 
-		for(String tableName : tableNames){
-			//查询表信息
-			Map<String, String> table = queryTable(tableName);
-			//查询列信息
-			List<Map<String, String>> columns = queryColumns(tableName);
-			//生成代码
-			GenUtils.generatorCode(table, columns, zip);
-		}
-		IOUtils.closeQuietly(zip);
-		return outputStream.toByteArray();
-	}
+    public List<Map<String, String>> queryColumns(String tableName) {
+        return generatorDao.queryColumns(tableName);
+    }
+
+    public byte[] generatorCode(String[] tableNames) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ZipOutputStream zip = new ZipOutputStream(outputStream);
+
+        for (String tableName : tableNames) {
+            //查询表信息
+            Map<String, String> table = queryTable(tableName);
+            //查询列信息
+            List<Map<String, String>> columns = queryColumns(tableName);
+            //生成代码
+            GenUtils.generatorCode(table, columns, dbProperties.getMybatisType(), zip);
+        }
+        IOUtils.closeQuietly(zip);
+        return outputStream.toByteArray();
+    }
 }
