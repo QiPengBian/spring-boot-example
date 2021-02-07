@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
      * @date: 2021-01-05 16:21:07
      * @param: userEntity
      */
-    @AopLog
+    @AopLog(title = "新增用户")
     @Override
     public UserEntity saveUser(UserEntity userEntity) {
         if (ObjectUtil.isNotNull(userEntity)) {
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
      * @param: userEntity
      * @return: UserEntity
      */
-    @AopLog
+    @AopLog(title = "修改用户")
     @Override
     public UserEntity updateUser(UserEntity userEntity) {
         if (ObjectUtil.isNotNull(userEntity)) {
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
      * @param: username
      * @return: UserEntity
      */
-    @AopLog
+    @AopLog(title = "通过用户名查询用户")
     @Override
     public UserEntity queryUserByUsename(String username) {
         UserEntity userEntity = null;
