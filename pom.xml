@@ -21,12 +21,14 @@
         <module>spring-boot-02-properties</module>
         <module>spring-boot-03-exception</module>
         <module>spring-boot-04-data-dynamic</module>
+        <module>spring-boot-04-data-jpa</module>
         <module>spring-boot-04-data-mybatis-plus</module>
         <module>spring-boot-04-data-tk-mybatis</module>
         <module>spring-boot-05-docker</module>
         <module>spring-boot-06-oauth2-security-jwt</module>
         <module>spring-boot-07-redis</module>
         <module>spring-boot-08-cache-redis</module>
+        <module>spring-boot-09-seata</module>
     </modules>
 
     <properties>
