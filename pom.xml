@@ -23,11 +23,10 @@
         <module>spring-boot-04-data-dynamic</module>
         <module>spring-boot-04-data-mybatis-plus</module>
         <module>spring-boot-04-data-tk-mybatis</module>
-<!--        <module>spring-boot-05-cache-redis</module>-->
-<!--        <module>spring-boot-06-oauth2-security</module>-->
+        <module>spring-boot-05-docker</module>
         <module>spring-boot-06-oauth2-security-jwt</module>
-<!--        <module>spring-boot-07-seata</module>-->
-<!--        <module>spring-boot-08-redis</module>-->
+        <module>spring-boot-07-redis</module>
+        <module>spring-boot-08-cache-redis</module>
     </modules>
 
     <properties>

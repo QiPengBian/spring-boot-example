@@ -21,7 +21,7 @@ import java.util.List;
  * @email 276109002@qq.com
  * @date 2021-01-12 13:24:51
  */
-@Service("roleService")
+@Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
 
     /**
