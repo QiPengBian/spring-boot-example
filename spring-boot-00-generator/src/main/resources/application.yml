@@ -45,6 +45,6 @@ pagehelper:
 #指定数据库，可选值有【mysql、oracle、sqlserver、postgresql】
 example:
   databaseType: mysql
-#  mybatisType: mybatis-plus
-  mybatisType: tk-mybatis
+  mybatisType: mybatis-plus
+#  mybatisType: tk-mybatis
 

@@ -1,114 +1,20 @@
 package ${package}.${moduleName}.controller;
 
-import cn.com.bluemoon.common.web.exception.AssertUtil;
-import cn.com.bluemoon.common.web.response.ResponseBean;
-import ${package}.common.constant.ParamConstant;
-import ${package}.common.enums.ErrorCodeEnum;
-import ${package}.${moduleName}.domain.vo.${className}QueryVo;
-import ${package}.${moduleName}.domain.vo.${className}Vo;
 import ${package}.${moduleName}.service.${className}Service;
-import cn.com.bluemoon.mybatis.api.Paging;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @description: ${comments}
- * @author: ${author}
- * @date: ${datetime}
+ * ${comments}
+ *
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
  */
-@Slf4j
-@CrossOrigin
-@RestController
-@RequestMapping("/crm/admin/")
+@RestController("${moduleName}/${pathName}")
 public class ${className}Controller {
 
     @Autowired
     private ${className}Service ${classname}Service;
 
-    /**
-     * @description: 分页查询
-     * @author: ${author}
-     * @date: ${datetime}
-     * @param: json
-     * @return: ResponseBean
-     */
-    @PostMapping("/query${className}PageList")
-    public ResponseBean query${className}PageList(@RequestBody JSONObject json) {
-        ResponseBean responseBean = ResponseBean.success();
-        Paging paging = json.getObject(ParamConstant.PAGE, Paging.class);
-        ${className}QueryVo ${classname}QueryVo = json.getObject(ParamConstant.PARAM, ${className}QueryVo.class);
-        AssertUtil.notNull(paging, ErrorCodeEnum.PARAM_ERROR.getCode(), ErrorCodeEnum.PARAM_ERROR.getMessage());
-        AssertUtil.notNull(${classname}QueryVo, ErrorCodeEnum.PARAM_ERROR.getCode(), ErrorCodeEnum.PARAM_ERROR.getMessage());
-        responseBean.setData(${classname}Service.queryPage(paging, ${classname}QueryVo));
-        return responseBean;
-    }
-
-    /**
-     * @description: 主键查询
-     * @author: ${author}
-     * @date: ${datetime}
-     * @param: id
-     * @return: ResponseBean
-     */
-    @GetMapping("/query${className}ModelById")
-    public ResponseBean query${className}ModelById(Integer id) {
-        ResponseBean responseBean = ResponseBean.success();
-        AssertUtil.notNull(id, ErrorCodeEnum.PARAM_ERROR.getCode(), ErrorCodeEnum.PARAM_ERROR.getMessage());
-        ${className}Vo ${classname}Vo = ${classname}Service.queryModelById(id);
-        responseBean.setData(${classname}Vo);
-        return responseBean;
-    }
-
-    /**
-     * @description: 新增
-     * @author: ${author}
-     * @date: ${datetime}
-     * @param: json
-     * @return: ResponseBean
-     */
-    @PostMapping("/saveOrUpdate${className}Model")
-    public ResponseBean saveOrUpdate${className}Model(@RequestBody JSONObject json) {
-        ${className}Vo ${classname}Vo = json.getObject(ParamConstant.PARAM, ${className}Vo.class);
-        AssertUtil.notNull(${classname}Vo, ErrorCodeEnum.PARAM_ERROR.getCode(), ErrorCodeEnum.PARAM_ERROR.getMessage());
-        ${classname}Service.saveOrUpdateModelSelective(${classname}Vo);
-        return ResponseBean.success();
-    }
-
-    /**
-     * @description: 修改数据
-     * @author: ${author}
-     * @date: ${datetime}
-     * @param: json
-     * @return: ResponseBean
-     */
-    @PostMapping("/update${className}ModelById")
-    public ResponseBean update${className}ModelById(@RequestBody JSONObject json) {
-        ${className}Vo ${classname}Vo = json.getObject(ParamConstant.PARAM, ${className}Vo.class);
-        AssertUtil.notNull(${classname}Vo, ErrorCodeEnum.PARAM_ERROR.getCode(), ErrorCodeEnum.PARAM_ERROR.getMessage());
-        ${classname}Service.updateModelSelectiveForce(${classname}Vo);
-        return ResponseBean.success();
-    }
-
-    /**
-     * @description: 批量逻辑删除数据
-     * @author: ${author}
-     * @date: ${datetime}
-     * @param: json
-     * @return: ResponseBean
-     */
-    @PostMapping("/delete${className}ModelByIdList")
-    public ResponseBean delete${className}ModelByIdList(@RequestBody JSONObject json) {
-        JSONArray jsonJSONArray = json.getJSONArray(ParamConstant.ID_LIST);
-        List<Integer> idList = jsonJSONArray.toJavaList(Integer.class);
-        ${classname}Service.deleteModelByIdList(idList);
-        return ResponseBean.success();
-    }
 }
