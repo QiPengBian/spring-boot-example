@@ -29,6 +29,10 @@
         <module>spring-boot-07-redis</module>
         <module>spring-boot-08-cache-redis</module>
         <module>spring-boot-09-seata</module>
+        <module>spring-boot-10-mq-kafka</module>
+        <module>spring-boot-10-mq-rabbitmq</module>
+        <module>spring-boot-10-mq-rocketmq</module>
+        <module>spring-boot-11-elasticsearch</module>
     </modules>
 
     <properties>
