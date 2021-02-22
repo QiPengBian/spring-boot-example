@@ -1,0 +1,29 @@
+spring:
+  kafka:
+    bootstrap-servers: 192.168.11.136:9092
+    consumer:
+      group-id: 0
+      # key反序列化方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # value反序列化方式
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # 关闭offset自动提交
+      enable-auto-commit: false
+#      auto-commit-interval: 100
+#      auto-offset-reset: earliest
+    producer:
+      # key序列化方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # value序列化方式
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # 批处理大小，单位为字节
+      batch-size: 65536
+      # 生产者可以使用的总内存字节来缓冲等待发送到服务器的记录
+      buffer-memory: 524288
+      # 重试次数，0为不启用重试机制
+      retries: 1
+      # 代表“已提交”消息的定义,设置成all，则表明所有Broker都要接收到消息，该消息才算是“已提交”。
+      acks: all
+    listener:
+      ack-mode: manual
+
