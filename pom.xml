@@ -56,7 +56,7 @@
         <alibaba-seata.version>1.0.0</alibaba-seata.version>
         <alibaba-spring-context-support.version>1.0.5</alibaba-spring-context-support.version>
         <dynamic-datasource-spring-boot-starter.version>3.3.1</dynamic-datasource-spring-boot-starter.version>
-
+        <spring-kafka.version>2.5.11.RELEASE</spring-kafka.version>
     </properties>
 
     <dependencyManagement>
@@ -94,6 +94,13 @@
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
+            <!-- MQ -->
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>${spring-kafka.version}</version>
+            </dependency>
+
             <!-- 解析 UserAgent 信息 -->
             <dependency>
                 <groupId>eu.bitwalker</groupId>
