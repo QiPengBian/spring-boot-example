@@ -8,6 +8,7 @@
         <result property="id" column="id"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
+        <result property="enabled" column="enabled" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
         <collection property="roleList" javaType="java.util.List" resultMap="roleMap"/>
     </resultMap>
 
@@ -19,6 +20,7 @@
         SELECT
             u.username,
             u.password,
+            u.enabled,
             r.role_name
         FROM
             sys_user u

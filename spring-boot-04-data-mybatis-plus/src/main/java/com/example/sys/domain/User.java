@@ -3,6 +3,8 @@ package com.example.sys.domain;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.example.common.enums.EnableEnum;
+import com.example.common.handler.EnabledEnumTypeHandler;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +24,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-@TableName("sys_user")
+@TableName(value = "sys_user", autoResultMap = true)
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +44,9 @@ public class User implements Serializable {
      */
     @TableField(value = "password")
     private String password;
+
+    @TableField(value = "enabled", typeHandler = EnabledEnumTypeHandler.class)
+    private EnableEnum enabled;
     /**
      * 角色列表
      */

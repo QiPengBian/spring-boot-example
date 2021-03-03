@@ -22,6 +22,12 @@ class SpringBoot04DataMybatisPlusApplicationTests {
     @Autowired
     private RoleService roleService;
 
+    @Test
+    void typeHandlerTest(){
+        List<User> userList = userService.list();
+        userList.forEach(System.out::println);
+    }
+
     /**
      * @description: 一对多测试
      * @author: bianqipeng
