@@ -44,7 +44,9 @@ public class User implements Serializable {
      */
     @TableField(value = "password")
     private String password;
-
+    /**
+     * 是否有效：0-无效，1-有效
+     */
     @TableField(value = "enabled", typeHandler = EnabledEnumTypeHandler.class)
     private EnableEnum enabled;
     /**
@@ -58,5 +60,7 @@ public class User implements Serializable {
     public static final String USERNAME = "username";
 
     public static final String PASSWORD = "password";
+
+    public static final String ENABLED = "enabled";
 
 }
