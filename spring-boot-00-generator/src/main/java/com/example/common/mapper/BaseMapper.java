@@ -17,6 +17,7 @@ import java.util.List;
 @RegisterMapper
 public interface BaseMapper<T> extends Mapper<T>, MySqlMapper<T> {
 
+
     /**
      * @description: 自定义字段，允许将数据修改成null
      * @author: bianqipeng
